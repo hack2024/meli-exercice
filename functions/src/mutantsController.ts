@@ -25,14 +25,9 @@ export const isMutant = async (dnaSequences: string[]) => {
 
 const countRowSequence = (dna: string[]) => {
   let count = 0;
-  let diagonalSequence = "";
-  for (let i = 0; i < dna.length; i++) {
-    const dnaSequence = dna[i];
-    if (re.test(dnaSequence)) count++;
-    const character = dnaSequence[i];
-    diagonalSequence = diagonalSequence + character;
+  for (const seq of dna) {
+    if (re.test(seq)) count++;
   }
-  if (re.test(diagonalSequence)) count++;
   return count;
 };
 
@@ -49,17 +44,27 @@ const countColumnSequence = (dna: string[]) => {
     }
     dnaTraspuesta.push(newDnaSequence);
   }
+
   return countRowSequence(dnaTraspuesta);
 };
 
 const countDiagonalSequence = (dna: string[]) => {
+  let sequenceSize = dna.length - 1;
   const dnaDiagonal = [];
-  let newDnaSequence = "";
+  let sequenceDiagonalA = "";
+  let sequenceDiagonalB = "";
+
   for (let i = 0; i < dna.length; i++) {
     const dnaSequence = dna[i];
-    const character = dnaSequence[i];
-    newDnaSequence = newDnaSequence + character;
+    const characterDiagonalA = dnaSequence[i];
+    const characterDiagonalB = dnaSequence[sequenceSize];
+    sequenceSize--;
+    sequenceDiagonalA = sequenceDiagonalA + characterDiagonalA;
+    sequenceDiagonalB = sequenceDiagonalB + characterDiagonalB;
   }
-  dnaDiagonal.push(newDnaSequence);
+
+  dnaDiagonal.push(sequenceDiagonalA);
+  dnaDiagonal.push(sequenceDiagonalB);
+
   return countRowSequence(dnaDiagonal);
 };

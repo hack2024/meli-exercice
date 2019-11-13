@@ -2,6 +2,9 @@ import * as functions from "firebase-functions";
 import { validateRequest, validateDnaSequences } from "./validators";
 import { isMutant } from "./mutantsController";
 
+/**
+ * Endpoint que devuelve si un humano es mutante o no
+ */
 export const mutant = functions.https.onRequest(async (request, response) => {
   if (validateRequest(request) && validateDnaSequences(request.body.dna)) {
     const dnaSequences = request.body.dna;

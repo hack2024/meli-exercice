@@ -31,7 +31,15 @@ const getStats = async () => {
   return document.data();
 };
 
+const save = (dnaSequence: string[], isMutant: boolean) => {
+  return db.collection("dna").add({
+    sequence: dnaSequence,
+    isMutant: isMutant
+  });
+};
+
 export const dbService = {
+  save,
   saveDnaToDB,
   getStats
 };

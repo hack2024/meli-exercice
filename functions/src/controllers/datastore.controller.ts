@@ -14,7 +14,6 @@ export const datastore = functions.pubsub
     const dnaSequences: string[] = message.json.dnaSequences;
     const isMutant: boolean = message.json.isMutant;
     const sequencesJoined = dnaSequences.join("");
-
     const response = await index.search(sequencesJoined);
     // si no encontramos alguna secuencia la persistimos y actualizamos el indice de busqueda
     if (response.hits.length === 0) {

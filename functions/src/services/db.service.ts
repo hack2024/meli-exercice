@@ -15,7 +15,17 @@ const save = (dnaSequence: string[], isMutant: boolean) => {
   });
 };
 
+const list = async () => {
+  const documentsRef = db.collection("dna");
+  const dnaQuery = await documentsRef.get();
+  const dnaSequences: any = [];
+  dnaQuery.forEach(snap => {
+    dnaSequences.push(snap.data());
+  });
+  return dnaSequences;
+};
 export const dbService = {
   save,
-  getStats
+  getStats,
+  list
 };

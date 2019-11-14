@@ -1,10 +1,9 @@
 import * as functions from "firebase-functions";
-const { PubSub } = require("@google-cloud/pubsub");
-
-const pubsub = new PubSub();
 
 import { validateRequest, validateDnaSequences } from "../utils/validators";
 import { isMutant } from "../services/mutants.service";
+import { dbService } from "../services/db.service";
+import { publishResults } from "../services/topics.service";
 
 /**
  * Endpoint que devuelve si un humano es mutante o no
@@ -29,12 +28,7 @@ export const mutant = functions.https.onRequest(async (request, response) => {
   }
 });
 
-const publishResults = (dnaSequences: string[], result: boolean) => {
-  const topic = pubsub.topic("save-mutant");
-  const messageObject = {
-    dnaSequences: dnaSequences,
-    isMutant: result
-  };
-  const messageBuffer = Buffer.from(JSON.stringify(messageObject), "utf8");
-  return topic.publish(messageBuffer);
-};
+export const list = functions.https.onRequest(async (request, response) => {
+  const documents = await dbService.list();
+  response.status(200).send(documents);
+});

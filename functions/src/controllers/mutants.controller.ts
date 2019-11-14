@@ -1,6 +1,6 @@
 import * as functions from "firebase-functions";
-import { validateRequest, validateDnaSequences } from "./validators";
-import { isMutant } from "./mutantsController";
+import { validateRequest, validateDnaSequences } from "../utils/validators";
+import { isMutant } from "../services/mutants.service";
 
 /**
  * Endpoint que devuelve si un humano es mutante o no

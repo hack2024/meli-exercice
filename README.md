@@ -6,6 +6,7 @@ Resolución a ejercicio de ingreso para Mercado Libre
 
 Para comenzar debemos tener instalada la version 12 LTS de Node.js (https://nodejs.org/en/). Luego de esto
 podemos seguir con los siguientes pasos.
+
 1. git clone https://github.com/hack2024/meli-exercice.git
 2. `npm install -g firebase-tools`
 3. cd meli-exercice
@@ -17,6 +18,8 @@ podemos seguir con los siguientes pasos.
 5. `export GOOGLE_APPLICATION_CREDENTIALS=/PATH TO service-account.json/`
 6. `firebase functions:config:get > .runtimeconfig.json`
 7. `npm run serve`
+
+Los archivos _service-account.json_ y _.runtimeconfig.json_ seran enviados por email al momento de la entrega del ejercicio.
 
 Con el comando `npm run serve` dejamos levantado de manera local los endpoints para poder validar si un humano es mutante o no,
 las estadisticas y un listado de las sequencias de ADN que se han ido gurdando en base de datos.

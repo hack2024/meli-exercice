@@ -13,8 +13,11 @@ podemos seguir con los siguientes pasos.
    ```
    cd functions
    npm install
-   npm run serve
    ```
+5. `export GOOGLE_APPLICATION_CREDENTIALS=/PATH TO service-account.json/`
+6. `firebase functions:config:get > .runtimeconfig.json`
+7. `npm run serve`
+
 Con el comando `npm run serve` dejamos levantado de manera local los endpoints para poder validar si un humano es mutante o no,
 las estadisticas y un listado de las sequencias de ADN que se han ido gurdando en base de datos.
 
@@ -36,9 +39,7 @@ https://us-central1-meli-exercice.cloudfunctions.net/list
 
 ### Stack Tecnológico
 
-```
-Google Cloud Functions
-Google Cloud Firestore
-Google Cloud Pub/Sub
-Algolia Search API
-```
+`Google Cloud Functions`
+`Google Cloud Firestore`
+`Google Cloud Pub/Sub`
+`Algolia Search API`

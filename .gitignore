@@ -69,3 +69,6 @@ service-account.json
 
 # runtimeconfig
 .runtimeconfig.json
+
+# MACOS
+.DS_Store
